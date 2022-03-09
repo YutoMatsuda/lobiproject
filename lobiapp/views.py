@@ -9,3 +9,6 @@ def signupview(request):
 def topview(request):
     print(request.POST.get('username_data'))
     return render(request,'top.html', {'somedata':100})
+
+def homeview(request):
+    return render(request,'home.html')
