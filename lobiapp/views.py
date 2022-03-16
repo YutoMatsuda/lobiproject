@@ -1,14 +1,73 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.db import IntegrityError
+from django.contrib.auth import authenticate, login,logout
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from .models import GroupMember
+from django.db.models import Count
+
 
 # Create your views here.
 
 def signupview(request):
-    print(request.POST.get('username_data'))
-    return render(request,'signup.html', {'somedata':100})
+    if request.method == 'POST':
+        username_data = request.POST['username_data']
+        password_data = request.POST['password_data']
+        try:
+            User.objects.create_user(username_data, '',password_data)
+        except IntegrityError:
+            return render(request, 'signup.html', {'error': 'このユーザーは既に登録されています。'})
+    else:
+        return render(request, 'signup.html', {})
+    return render(request, 'signup.html', {})
 
 def topview(request):
-    print(request.POST.get('username_data'))
+    print(GroupMember.objects.annotate(Count('group')).order_by('-group__count'))
     return render(request,'top.html', {'somedata':100})
 
 def homeview(request):
     return render(request,'home.html')
+
+def loginview(request):
+    if request.method == 'POST':
+        username_data = request.POST['username_data']
+        password_data = request.POST['password_data']
+        user = authenticate(request, username=username_data, password=password_data)
+        if user is not None:
+            login(request, user)
+            return redirect('list')
+        else:
+            return redirect('login')
+    return render(request, 'login.html')
+
+"""
+@login_required
+def listview(request):
+    object_list = ReviewModel.objects.all()
+    return render(request, 'list.html',{ 'object_list':object_list})
+
+@login_required
+def detailview(request, pk):
+    object= ReviewModel.objects.get(pk=pk)
+    return render(request, 'detail.html', {'object':object})
+
+class CreateClass(CreateView):
+    template_name = 'create.html'
+    model = ReviewModel
+    fields = ('title', 'content', 'author', 'images', 'evaluation')
+    success_url = reverse_lazy('list')
+
+def logoutview(request):
+    logout(request)
+    return redirect('login')
+
+def evaluationview(request, pk):
+    post = ReviewModel.objects.get(pk=pk)
+    author_name = request.user.get_username() + str(request.user.id)
+    post.useful_review = post.useful_review + 1
+    post.useful_review_record = post.useful_review_record + author_name
+    post.save()
+    return redirect('list')
+"""

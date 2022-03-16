@@ -15,10 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lobiapp.views import signupview, topview, homeview
+from lobiapp.views import signupview, topview, homeview, loginview
 
 urlpatterns = [
     path('signup/', signupview, name='signup'),
     path('', topview, name='top'),
     path('home/', homeview, name='home'),
+    path('login/', loginview, name='login'),
+    path('admin/', admin.site.urls),
 ]
+
+"""
+    path('sample/',sampleview),
+    path('list/', listview, name='list'),
+    path('detail/<int:pk>/', detailview, name='detail'),
+    path('create/', CreateClass.as_view(), name='create'),
+    path('logout/', logoutview, name='logout'),
+    path('evaluation/<int:pk>/', evaluationview, name='evaluation'),
+"""
+
