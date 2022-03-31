@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login,logout
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import GroupMember
+from .models import GroupMember, Group
 from django.db.models import Count
 
 
@@ -24,8 +24,8 @@ def signupview(request):
     return render(request, 'signup.html', {})
 
 def topview(request):
-    print(GroupMember.objects.annotate(Count('group')).order_by('-group__count'))
-    return render(request,'top.html', {'somedata':100})
+    object_list = GroupMember.objects.filter(group__secret=Group.PUBLIC).annotate(Count('user')).order_by('-user__count')
+    return render(request,'top.html', {'object_list':object_list})
 
 def homeview(request):
     return render(request,'home.html')
@@ -41,6 +41,11 @@ def loginview(request):
         else:
             return redirect('login')
     return render(request, 'login.html')
+
+def groupview(request, pk):
+    group = Group.objects.get(pk=pk)
+    return render(request,'group.html',{'object':group})
+
 
 """
 @login_required

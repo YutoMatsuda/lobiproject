@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lobiapp.views import signupview, topview, homeview, loginview
+from lobiapp.views import signupview, topview, homeview, loginview, groupview
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('signup/', signupview, name='signup'),
@@ -23,7 +26,9 @@ urlpatterns = [
     path('home/', homeview, name='home'),
     path('login/', loginview, name='login'),
     path('admin/', admin.site.urls),
-]
+    path('group/<int:pk>/', groupview, name='group'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 """
     path('sample/',sampleview),

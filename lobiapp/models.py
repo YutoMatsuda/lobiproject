@@ -42,7 +42,7 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to='')
     profile = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -77,10 +77,13 @@ class Group(models.Model):
     SECRET_CHOICES = ((PUBLIC, '公開'),(PRIVATE,'プライベート'))
     name = models.CharField(max_length=40)
     secret = models.IntegerField(choices=SECRET_CHOICES, default=PUBLIC)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='')
     memo = models.TextField(blank=True)
     leader = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
 class GroupMember(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -90,7 +93,7 @@ class ChatMessage(models.Model):
     chat = models.TextField()
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to='')
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ChatReply(models.Model):
@@ -98,7 +101,7 @@ class ChatReply(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to='')
 
 class ChatBookmark(models.Model):
     chat = models.ForeignKey(ChatMessage, on_delete=models.CASCADE)
