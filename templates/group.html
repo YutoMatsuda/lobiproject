@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 <div class="container">
@@ -17,16 +18,62 @@
     </div>
   </div>
 
-  <form>
+
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="chat"></textarea>
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Default file input example</label>
-        <input class="form-control" type="file" id="formFile">
+        <input class="form-control" type="file" id="formFile" name="image">
       </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+  {% for chat_message in chat_message_list %}
+  <div class="chat-list-block">
+    <div class="chat-item">
+      <a class="user">
+        <img class="user-icon" src="{{ chat_message.user.image.url }}">
+      </a>
+      <div class="content">
+        <div class="header">
+          <a class="header__user-name">{{ chat_message.user.name }}</a>
+          <time>
+            <a class="header__date">{{ chat_message.created_at|naturaltime }}</a>
+          </time>
+        </div>
+        <div class="body">
+          <p class="chat-message message"></p>
+        </div>
+        <div class="chat-item-footer">
+          <div class="chat-goo-button">
+            <svg class="icon svg-icon svg-fill"></svg>
+            <span class="goo-txt"></span>
+          </div>
+          <div class="chat-boo-button">
+            <svg class="icon svg-icon svg-fill"></svg>
+            <span class="boo-txt"></span>
+          </div>
+          <span class="reply-button">
+            <a class="chat-reply-button">
+              <svg class="icon svg-icon svg-fill"></svg>
+            </a>
+          </span>
+          <div class="option-button">
+            <svg class="option-button__icon svg-icon svg-fill"></svg>
+            <ul class="chat-item-option-balloon">
+              <li class="item">
+                <a class="link"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="option-button"></div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock content %}
