@@ -5,7 +5,9 @@ from django.contrib.auth import authenticate, login,logout
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import GroupMember, Group
+
+from .forms import ChatMessageForm
+from .models import GroupMember, Group, ChatMessage
 from django.db.models import Count
 
 
@@ -44,7 +46,17 @@ def loginview(request):
 
 def groupview(request, pk):
     group = Group.objects.get(pk=pk)
-    return render(request,'group.html',{'object':group})
+    form = ChatMessageForm(request.POST or None, request.FILES or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            chat_message = form.save(commit=False)
+            chat_message.user = request.user
+            chat_message.group = group
+            chat_message.save()
+    chat_message_list = ChatMessage.objects.filter(group = group).order_by('-created_at')
+    return render(request,'group.html',{'object':group, 'chat_message_list':chat_message_list})
+
+
 
 
 """
