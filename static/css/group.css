@@ -8,6 +8,9 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     font-size: 62.5%;
 }
 */
+body {
+    background-color: #f8f7f8;
+}
 a {
     color: #353130;
     text-decoration: none;
@@ -149,11 +152,8 @@ a {
 }
 .svg-icon {
     display: inline-block;
-    width: 16px;
-    height: 16px;
     color: inherit;
     vertical-align: middle;
-    fill: none;
     stroke: currentColor;
 }
 .goo-txt, .boo-txt, .bookmark-txt {
