@@ -18,6 +18,7 @@ a {
 ol, ul {
     list-style: none;
     padding: 0;
+    margin-bottom: 0;
 }
 .chat-item {
     width: 100%;
@@ -73,8 +74,8 @@ ol, ul {
     width: 0;
     height: 0;
     border-right: 8px solid #fff;
-    border-bottom: 8px solid transparent;
-    border-top: 8px solid transparent;
+    /* border-bottom: 8px solid transparent; */
+    /* border-top: 8px solid transparent; */
     content: "";
 }
 .header {
