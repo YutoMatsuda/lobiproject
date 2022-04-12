@@ -15,6 +15,10 @@ a {
     color: #353130;
     text-decoration: none;
 }
+ol, ul {
+    list-style: none;
+    padding: 0;
+}
 .chat-item {
     width: 100%;
     margin-bottom: 16px;
@@ -91,6 +95,7 @@ a {
 }
 .chat-message {
     padding-bottom: 20px;
+    margin-bottom: 0;
 }
 .message {
     line-height: 1.7;
@@ -99,7 +104,7 @@ a {
     font-size: 1.4rem;
 }
 .chat-item-footer {
-    height: 30px;
+    /* height: 30px; */
     padding: 0 20px 20px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -395,4 +400,25 @@ a {
     height: 0;
     text-align: right;
     color: #999;
+}
+.reply-list--simple {
+    border-top: 1px solid #e7e6e9;
+}
+.reply-item--simple {
+    background-color: #f3f2f4;
+}
+.reply-item {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    border-top: 1px solid #e7e6e9;
+}
+.header__user-icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 12px;
+    border-radius: 50%;
 }
