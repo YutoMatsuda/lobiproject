@@ -300,3 +300,99 @@ a {
     bottom: auto;
     left: auto;
 }
+.textarea-wrapper {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.textarea {
+    width: 100%;
+    min-height: 37px;
+    padding: 5px 10px;
+    font-size: 16px;
+    line-height: 24px;
+    border: 0;
+    resize: none;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.buttons {
+    height: 30px;
+    margin-top: 8px;
+}
+.buttons:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+.buttons--left {
+    float: left;
+}
+.buttons--right {
+    margin-bottom: 3px;
+}
+.chat-button {
+    float: left;
+    padding: 0 12px 0 4px;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+}
+.chat-button__label {
+    cursor: pointer;
+}
+.chat-composer-stamp-butoon {
+    float: left;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+}
+.chat-composer-stamp-button__tooltip {
+    display: none;
+    position: absolute;
+    top: -36px;
+    right: -31px;
+    bottom: auto;
+    left: auto;
+    width: 84px;
+    color: #fff;
+    text-align: center;
+    background: rgba(18,8,38,.85);
+    font-size: 1.1rem;
+    border-radius: 8px;
+}
+.submit-button {
+    float: right;
+    width: 48px;
+    height: 100%;
+    font-weight: 700;
+    line-height: 30px;
+    margin-right: 4px;
+    background-color: #24b23c;
+    border: 1px solid #24b23c;
+}
+.chat-composer__description {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: -10px;
+    left: auto;
+    height: 0;
+    text-align: right;
+    color: #999;
+}
