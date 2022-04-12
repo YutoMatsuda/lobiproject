@@ -68,6 +68,10 @@ def chat_reply_view(request):
     return redirect('group', group_id)
 
 
+def chatview(reqeust, group_id, chat_id):
+    pass
+
+
 """
 @login_required
 def listview(request):

@@ -73,7 +73,7 @@
         </div>
         <ul class="reply-list reply-list--simple">
           {% if chat_message.chatreply_set.all.count >= 3 %}
-          <li>三件以上ある</li>
+          <li><a href="{% url 'chat' chat_message.group_id chat_message.id %}">三件以上ある</a></li>
           {% endif %}
           {% for reply in chat_message.chatreply_set.all|slice:":2" %}
           <li class="reply-item reply-item--simple">
