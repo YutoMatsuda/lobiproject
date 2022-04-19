@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="ja">
   <head>
@@ -44,6 +45,7 @@
     
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.jp/docs/5.0/examples/carousel/carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 's' %}">
 
     {% block style %}{% endblock %}
 

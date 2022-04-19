@@ -68,15 +68,9 @@ def chat_reply_view(request):
     return redirect('group', group_id)
 
 def chatview(request, group_id, chat_id):
-    group_id = request.POST['group_id']
-    chat_id = request.POST['chat_id']
-    reply = request.POST['reply']
-    ChatReply.objects.create(
-        chat_id=chat_id,
-        user=request.user,
-        reply=reply,
-    )
-    return redirect(request,'chat.html')
+    mainchat = ChatMessage.objects.get(id=chat_id)
+    replychat = ChatReply.objects.filter(chat_id = chat_id)
+    return render(request,'chat.html',{'mainchat':mainchat,'replychat':replychat})
 
 """
 @login_required

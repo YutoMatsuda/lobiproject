@@ -2,11 +2,6 @@
 {% load static %}
 {% load humanize %}
 
-{% block style %}
-  {{ block.super }}
-  <link rel="stylesheet" href="{% static 'css/group.css' %}?{% now 's' %}">
-{% endblock %}
-
 {% block content %}
 <div class="container">
 <div class="card mb-3" style="">

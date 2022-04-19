@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
-
+{% load humanize %}
 
 
 {% block content %}
-
 <div class="chat-content">
     <a class="back-button back-button nuxt-link-active">
         <svg viewBox="0 0 768 768" class="icon svg-icon svg-fill">
@@ -16,16 +15,18 @@
     <div class="chat-list">
         <div class="chat-item">
             <a class="user">
-                <img class="user-icon"></img>
+                <img class="user-icon" src="{{ mainchat.user.image.url }}">
             </a>
             <div class="content">
                 <div class="header">
-                    <a class="header__user-name"></a>
-                    
+                    <a class="header__user-name">{{ mainchat.user.name }}</a>
+                    <time>
+                        <a>{{ mainchat.created_at|naturaltime }}</a>
+                    </time>
                 </div>
                 <div class="body">
                     <p class="chat-message message">
-                        <span class="message"></span>
+                        <span class="message">{{ mainchat.chat }}</span>
                     </p>
                 </div>
                 <div class="chat-item-footer">
@@ -45,7 +46,37 @@
                     </div>
                 </div>
                 <ul class="reply-list">
-                    <li class="reply-item"></li>
+                    {% for reply in replychat %}
+                    <li class="reply-item">
+                        <div class="header">
+                            <a class="header__user-name">{{ reply.user.name }}</a>
+                            <time>
+                                <a>{{ reply.created_at|naturaltime }}</a>
+                            </time>
+                        </div>
+                        <div class="body">
+                            <p class="chat-message message">
+                                <span class="message">{{ reply.reply }}</span>
+                            </p>
+                        </div>
+                        <div class="chat-item-footer">
+                            <div class="chat-goo-button">
+                              <svg viewBox="0 0 768 768" class="icon svg-icon svg-fill"><path pid="0" d="M96 368h96v256H96V368zm533.792-96H435.04c10.464 0 22.656-32.16 30.4-54.208C487.168 155.872 494.752 112 494.752 112H377.376s-.928 42.752-14.144 71.936C323.232 271.968 224 369.888 224 369.888v234.624l375.104 49.12s20.512-104.864 30.208-178.56c9.696-73.664.48-203.072.48-203.072z"></path></svg>
+                              <span class="goo-txt">ぐー</span>
+                            </div>
+                            <div class="chat-boo-button">
+                              <svg viewBox="0 0 768 768" class="icon svg-icon svg-fill"><path pid="0" d="M544 176h96v256h-96V176zM99.968 528H294.72c-10.464 0-22.656 32.16-30.4 54.208C242.56 644.128 235.008 688 235.008 688h117.376s4.064-43.936 17.28-73.12c40-88 142.336-187.136 142.336-187.136V193.12L133.792 144s-22.08 106.048-31.776 179.744C92.32 397.408 99.968 528 99.968 528z"></path>
+                              </svg>
+                              <span class="boo-txt">ぶー</span>
+                            </div>
+                            <div class="chat-bookmark-button">
+                              <svg viewBox="0 0 808 768" class="icon svg-icon svf-fill"><path pid="0" d="M403.786 73.605l100.84 204.358 225.517 32.757-163.178 159.072 38.516 224.602-201.695-106.043-201.708 106.043 38.516-224.602L77.416 310.721l225.517-32.757z"></path>
+                              </svg>
+                              <span class="bookmark-txt">ブクマ</span>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
                 </ul>
                 <div class="reply__chat-composer">
                     <form method="post" action="{% url 'chat_reply' %}" enctype="multipart/form-data">{% csrf_token %}
