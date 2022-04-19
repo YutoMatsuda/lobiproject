@@ -15,6 +15,11 @@ a {
     color: #353130;
     text-decoration: none;
 }
+ol, ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
 .chat-item {
     width: 100%;
     margin-bottom: 16px;
@@ -69,8 +74,8 @@ a {
     width: 0;
     height: 0;
     border-right: 8px solid #fff;
-    border-bottom: 8px solid transparent;
-    border-top: 8px solid transparent;
+    /* border-bottom: 8px solid transparent; */
+    /* border-top: 8px solid transparent; */
     content: "";
 }
 .header {
@@ -91,6 +96,7 @@ a {
 }
 .chat-message {
     padding-bottom: 20px;
+    margin-bottom: 0;
 }
 .message {
     line-height: 1.7;
@@ -99,7 +105,7 @@ a {
     font-size: 1.4rem;
 }
 .chat-item-footer {
-    height: 30px;
+    /* height: 30px; */
     padding: 0 20px 20px;
     display: -webkit-box;
     display: -ms-flexbox;

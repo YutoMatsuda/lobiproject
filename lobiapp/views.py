@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
 from .forms import ChatMessageForm
-from .models import GroupMember, Group, ChatMessage
+from .models import GroupMember, Group, ChatMessage, ChatReply
 from django.db.models import Count
 
 
@@ -56,8 +56,27 @@ def groupview(request, pk):
     chat_message_list = ChatMessage.objects.filter(group = group).order_by('-created_at')
     return render(request,'group.html',{'object':group, 'chat_message_list':chat_message_list})
 
+def chat_reply_view(request):
+    group_id = request.POST['group_id']
+    chat_id = request.POST['chat_id']
+    reply = request.POST['reply']
+    ChatReply.objects.create(
+        chat_id=chat_id,
+        user=request.user,
+        reply=reply,
+    )
+    return redirect('group', group_id)
 
-
+def chatview(request, group_id, chat_id):
+    group_id = request.POST['group_id']
+    chat_id = request.POST['chat_id']
+    reply = request.POST['reply']
+    ChatReply.objects.create(
+        chat_id=chat_id,
+        user=request.user,
+        reply=reply,
+    )
+    return redirect(request,'chat.html')
 
 """
 @login_required
