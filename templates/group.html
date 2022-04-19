@@ -72,6 +72,7 @@
         <ul>
         </ul>
         <div class="reply__chat-composer">
+<<<<<<< Updated upstream
           <div class="chat-composer chat-composer--chat-layout">
             <div class="textarea-wrapper">
               <img class="icon">
@@ -84,6 +85,33 @@
                   <svg data-v-7ac26394="" version="1.1" viewBox="0 0 32 32" class="chat-button__icon svg-icon svg-fill"><path pid="0" d="M26.182 2.182a3.636 3.636 0 0 1 3.636 3.636v20.364a3.636 3.636 0 0 1-3.636 3.636H5.818a3.636 3.636 0 0 1-3.636-3.636V5.818a3.636 3.636 0 0 1 3.636-3.636h20.364zm0-2.182H5.818A5.818 5.818 0 0 0 0 5.818v20.364A5.818 5.818 0 0 0 5.818 32h20.364A5.818 5.818 0 0 0 32 26.182V5.818A5.818 5.818 0 0 0 26.182 0z"></path><path pid="1" d="M8.727 12.727a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-5.818a1.818 1.818 0 1 0 0 3.636 1.818 1.818 0 0 0 0-3.636zM21.905 12h-4.538a2.515 2.515 0 0 0-2.516 2.255C14.124 21.528 6.4 25.382.015 26.313c.014.735.167 1.46.451 2.138 6.036-.815 12.902-4.131 15.535-10.095h7.273a14.82 14.82 0 0 0 8.727 7.142v-2.327c-3.869-1.6-7.113-4.364-7.578-8.916A2.517 2.517 0 0 0 21.907 12zm-5.28 4.553a13.56 13.56 0 0 0 .393-2.007.35.35 0 0 1 .349-.291h4.538a.35.35 0 0 1 .349.291c.07.702.197 1.398.378 2.08l-6.007-.073z"></path></svg>
                 </label>
                 <p class="chat-button__tooltip"></p>
+=======
+          <form method="post" action="{% url 'chat_reply' %}" enctype="multipart/form-data">{% csrf_token %}
+            <div class="chat-composer chat-composer--chat-layout">
+              <div class="textarea-wrapper">
+                <img class="icon" src="{{ request.user.image.url }}" style="position: initial;width: 36px;height: 36px;border-radius: 50%;">
+                <textarea name="reply" maxlength="1000" placeholder="チャットを入力" class="textarea" style="max-height: 169px;"></textarea>
+              </div>
+              <div class="chat-composer-attachment-list"></div>
+              <div class="buttons buttons--left">
+                <div class="chat-button">
+                  <label class="chat-button__label">
+                    <svg version="1.1" viewBox="0 0 32 32" class="chat-button__icon svg-icon svg-fill">
+                      <path pid="0" d="M26.182 2.182a3.636 3.636 0 0 1 3.636 3.636v20.364a3.636 3.636 0 0 1-3.636 3.636H5.818a3.636 3.636 0 0 1-3.636-3.636V5.818a3.636 3.636 0 0 1 3.636-3.636h20.364zm0-2.182H5.818A5.818 5.818 0 0 0 0 5.818v20.364A5.818 5.818 0 0 0 5.818 32h20.364A5.818 5.818 0 0 0 32 26.182V5.818A5.818 5.818 0 0 0 26.182 0z"></path>
+                      <path pid="1" d="M8.727 12.727a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-5.818a1.818 1.818 0 1 0 0 3.636 1.818 1.818 0 0 0 0-3.636zM21.905 12h-4.538a2.515 2.515 0 0 0-2.516 2.255C14.124 21.528 6.4 25.382.015 26.313c.014.735.167 1.46.451 2.138 6.036-.815 12.902-4.131 15.535-10.095h7.273a14.82 14.82 0 0 0 8.727 7.142v-2.327c-3.869-1.6-7.113-4.364-7.578-8.916A2.517 2.517 0 0 0 21.907 12zm-5.28 4.553a13.56 13.56 0 0 0 .393-2.007.35.35 0 0 1 .349-.291h4.538a.35.35 0 0 1 .349.291c.07.702.197 1.398.378 2.08l-6.007-.073z"></path>
+                    </svg>
+                  </label>
+                  <p class="chat-button__tooltip">画像添付</p>
+                  <input type="file" accept="image/*" multiple="multiple" name="asset" class="chat-button__input">
+                </div>
+                <div class="chat-composer-stamp-butoon">
+                  <svg version="1.1" viewBox="0 0 32 32" class="icon svg-icon svg-fill">
+                    <path pid="0" d="M26.182 2.182a3.636 3.636 0 0 1 3.636 3.636v20.364a3.636 3.636 0 0 1-3.636 3.636H5.818a3.636 3.636 0 0 1-3.636-3.636V5.818a3.636 3.636 0 0 1 3.636-3.636h20.364zm0-2.182H5.818A5.818 5.818 0 0 0 0 5.818v20.364A5.818 5.818 0 0 0 5.818 32h20.364A5.818 5.818 0 0 0 32 26.182V5.818A5.818 5.818 0 0 0 26.182 0z"></path>
+                    <path pid="1" d="M20.553 16.553a1.034 1.034 0 0 0-1.761.727c0 .273.11.536.306.727.582.64.815 1.251.669 1.687-.155.349-.48.591-.858.64a1.585 1.585 0 0 1-1.236-.378 1.454 1.454 0 0 1-.538-1.222 1.047 1.047 0 0 0-2.094 0c.029.47-.171.926-.538 1.222-.34.296-.789.434-1.236.378a1.09 1.09 0 0 1-.858-.64c-.145-.436.087-1.047.669-1.687a1.016 1.016 0 0 0 0-1.454 1.034 1.034 0 0 0-1.455 0 3.65 3.65 0 0 0-1.28 3.811 3.173 3.173 0 0 0 2.502 2.022c.184.014.369.014.553 0a3.715 3.715 0 0 0 2.371-.887c.085-.075.163-.158.233-.247.07.089.148.172.233.247a3.704 3.704 0 0 0 2.371.887c.184.014.369.014.553 0a3.173 3.173 0 0 0 2.502-2.022 3.653 3.653 0 0 0-1.105-3.811zM11.549 12.727c0 .803-.632 1.455-1.411 1.455s-1.411-.651-1.411-1.455c0-.803.632-1.455 1.411-1.455s1.411.651 1.411 1.455zM23.185 12.727c0 .803-.632 1.455-1.411 1.455s-1.411-.651-1.411-1.455c0-.803.632-1.455 1.411-1.455s1.411.651 1.411 1.455z"></path>
+                  </svg>
+                  <p class="chat-composer-stamp-button__tooltip">スタンプ投稿</p>
+                </div>
+>>>>>>> Stashed changes
               </div>
               <div class="chat-composer-stamp-butoon">
                 <svg data-v-6229623c="" version="1.1" viewBox="0 0 32 32" class="icon svg-icon svg-fill"><path pid="0" d="M26.182 2.182a3.636 3.636 0 0 1 3.636 3.636v20.364a3.636 3.636 0 0 1-3.636 3.636H5.818a3.636 3.636 0 0 1-3.636-3.636V5.818a3.636 3.636 0 0 1 3.636-3.636h20.364zm0-2.182H5.818A5.818 5.818 0 0 0 0 5.818v20.364A5.818 5.818 0 0 0 5.818 32h20.364A5.818 5.818 0 0 0 32 26.182V5.818A5.818 5.818 0 0 0 26.182 0z"></path><path pid="1" d="M20.553 16.553a1.034 1.034 0 0 0-1.761.727c0 .273.11.536.306.727.582.64.815 1.251.669 1.687-.155.349-.48.591-.858.64a1.585 1.585 0 0 1-1.236-.378 1.454 1.454 0 0 1-.538-1.222 1.047 1.047 0 0 0-2.094 0c.029.47-.171.926-.538 1.222-.34.296-.789.434-1.236.378a1.09 1.09 0 0 1-.858-.64c-.145-.436.087-1.047.669-1.687a1.016 1.016 0 0 0 0-1.454 1.034 1.034 0 0 0-1.455 0 3.65 3.65 0 0 0-1.28 3.811 3.173 3.173 0 0 0 2.502 2.022c.184.014.369.014.553 0a3.715 3.715 0 0 0 2.371-.887c.085-.075.163-.158.233-.247.07.089.148.172.233.247a3.704 3.704 0 0 0 2.371.887c.184.014.369.014.553 0a3.173 3.173 0 0 0 2.502-2.022 3.653 3.653 0 0 0-1.105-3.811zM11.549 12.727c0 .803-.632 1.455-1.411 1.455s-1.411-.651-1.411-1.455c0-.803.632-1.455 1.411-1.455s1.411.651 1.411 1.455zM23.185 12.727c0 .803-.632 1.455-1.411 1.455s-1.411-.651-1.411-1.455c0-.803.632-1.455 1.411-1.455s1.411.651 1.411 1.455z"></path></svg>
@@ -97,12 +125,19 @@
           </div>
         </div>
         <div class="option-button">
-          <svg class="option-button__icon svg-icon svg-fill"></svg>
-            <ul class="chat-item-option-balloon">
-              <li class="item">
-                <a class="link"></a>
-              </li>
-            </ul>
+          <svg version="1.1" viewBox="0 0 768 768" class="option-button__icon svg-icon svg-fill">
+            <path pid="0" d="M659.251 215.078c10.406-10.291 27.188-10.291 37.594 0s10.406 26.918 0 37.21L393.217 552.96c-10.406 10.291-27.226 10.291-37.594 0L51.955 252.288c-10.406-10.291-10.406-26.918 0-37.21s27.188-10.291 37.594 0L374.4 489.254l284.851-274.176z"></path>
+          </svg>
+          <ul class="chat-item-option-balloon">
+            <li class="item">
+              <a href="/game/sniperoverkill3d/group/b517ec3d17228187f2cd7f6b7c76edc0febf3180/chat/962644619202523136" class="link">
+                詳細を見る
+              </a>
+            </li>
+            <li class="item">
+              通報する
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -110,3 +145,20 @@
   {% endfor %}
 </div>
 {% endblock content %}
+
+{% block script %}
+<script>
+  const optionButtons = document.getElementsByClassName('option-button');
+  for (var i=0, len=optionButtons.length; i<len; i++) {
+    const element = optionButtons[i];
+    element.addEventListener('mouseover', () => {
+      const options = element.querySelector('.chat-item-option-balloon');
+      options.style.display = 'block';
+    });
+    element.addEventListener('mouseout', () => {
+      const options = element.querySelector('.chat-item-option-balloon');
+      options.style.display = 'none';
+    });
+  }
+</script>
+{% endblock script %}

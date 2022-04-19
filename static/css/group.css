@@ -130,6 +130,18 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+.chat-goo-button, .chat-boo-button, .chat-bookmark-button:hover {
+    cursor: pointer;
+}
+.chat-goo-button:hover .icon{
+    color: #1a8cff;
+}
+.chat-boo-button:hover .icon{
+    color: #f24c3d;
+}
+.chat-bookmark-button:hover .icon{
+    color: #fabe2d;
+}
 .icon {
     position: absolute;
     width: 20px;
@@ -138,6 +150,13 @@ a {
     right: auto;
     bottom: auto;
     left: 8px;
+}
+.chat-button__icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    color: rgba(18,8,38,.5);
+    margin-top: -5px;
 }
 .svg-fill {
     fill: currentColor;
@@ -155,6 +174,9 @@ a {
 .goo-txt, .boo-txt, .bookmark-txt {
     font-size: 1.2rem;
     font-weight: 700;
+}
+.chat-button__input {
+    display: none;
 }
 .reply-list--simple {
     border-top: 1px solid #e7e6e9;
@@ -209,6 +231,7 @@ a {
     width: 14px;
     height: 14px;
     color: #888392;
+    vertical-align: top;
 }
 .chat-item-option-balloon {
     position: absolute;
@@ -241,9 +264,9 @@ a {
     height: 36px;
     padding: 6px 0;
     color: #120826;
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
     text-align: center;
-    line-height: 36px;
+    /* line-height: 36px; */
 }
 .composer-switch {
     background-color: #f3f2f4;
@@ -395,4 +418,25 @@ a {
     height: 0;
     text-align: right;
     color: #999;
+}
+.reply-list--simple {
+    border-top: 1px solid #e7e6e9;
+}
+.reply-item--simple {
+    background-color: #f3f2f4;
+}
+.reply-item {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    border-top: 1px solid #e7e6e9;
+}
+.header__user-icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 12px;
+    border-radius: 50%;
 }
