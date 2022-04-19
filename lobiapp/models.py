@@ -103,6 +103,12 @@ class ChatReply(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(blank=True, upload_to='')
 
+class Meta:
+    ordering = ['-created_at']
+
+def __str__(self):
+    return self.reply
+
 class ChatBookmark(models.Model):
     chat = models.ForeignKey(ChatMessage, on_delete=models.CASCADE)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
