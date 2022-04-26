@@ -9,7 +9,7 @@
         <svg viewBox="0 0 768 768" class="icon svg-icon svg-fill">
             <path pid="0" d="M552.922 659.251c10.292 10.406 10.292 27.188 0 37.594s-26.918 10.406-37.21 0L215.04 393.217c-10.291-10.406-10.291-27.226 0-37.594L515.712 51.955c10.292-10.406 26.918-10.406 37.21 0s10.292 27.188 0 37.594L278.746 374.4l274.176 284.851z"></path>
         </svg>
-        <span class="text">戻る</span>
+        <span class="text"><a href="{% url 'group' object.group.pk %}">{{ mainchat.group.name }}に戻る</a></span>
     </a>
     <div class="social-buttons social-buttons"></div>
     <div class="chat-list">
