@@ -446,3 +446,31 @@ ol, ul {
     margin-right: 12px;
     border-radius: 50%;
 }
+@-webkit-keyframes chat-goo-button {
+    0% {
+        background-position:0 0
+    }
+    to {
+        background-position:-1508px 0
+    }
+}    
+@keyframes chat-goo-button {
+    0% {
+        background-position:0 0
+    }
+    to{
+        background-position:-1508px 0
+    }
+}
+.goo-animation {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    top: -10px;
+    left: -7px;
+    background-size: cover;
+    content: "";
+    -webkit-animation: chat-goo-button .8s steps(29) forwards;
+    animation: chat-goo-button .8s steps(29) forwards;
+    background-image: url(https://static.web.lobi.co/assets/14459eb4515679cf2ebdc42a23ef844d5d3cdc98/img/eb0eabe.png);
+}

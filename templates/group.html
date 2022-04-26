@@ -51,7 +51,7 @@
           <p class="chat-message message">{{ chat_message.chat|linebreaksbr }}</p>
         </div>
         <div class="chat-item-footer">
-          <div class="chat-goo-button">
+          <div class="chat-goo-button" chat="{{ chat_message.id }}">
             <svg viewBox="0 0 768 768" class="icon svg-icon svg-fill"><path pid="0" d="M96 368h96v256H96V368zm533.792-96H435.04c10.464 0 22.656-32.16 30.4-54.208C487.168 155.872 494.752 112 494.752 112H377.376s-.928 42.752-14.144 71.936C323.232 271.968 224 369.888 224 369.888v234.624l375.104 49.12s20.512-104.864 30.208-178.56c9.696-73.664.48-203.072.48-203.072z"></path></svg>
             <span class="goo-txt">ぐー</span>
           </div>
@@ -164,6 +164,25 @@
 
 {% block script %}
 <script>
+  // https://docs.djangoproject.com/en/4.0/ref/csrf/
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+  const csrftoken = getCookie('csrftoken');
+
+  // option-button
   const optionButtons = document.getElementsByClassName('option-button');
   for (var i=0, len=optionButtons.length; i<len; i++) {
     const element = optionButtons[i];
@@ -174,6 +193,53 @@
     element.addEventListener('mouseout', () => {
       const options = element.querySelector('.chat-item-option-balloon');
       options.style.display = 'none';
+    });
+  }
+
+  // goo-button
+  const gooButtons = document.getElementsByClassName('chat-goo-button');
+  for (var i=0, len=gooButtons.length; i<len; i++) {
+    const element = gooButtons[i];
+    element.addEventListener('click', () => {
+
+      while (element.lastChild) {
+        element.removeChild(element.lastChild);
+      }
+
+      let fetchData = {chat: element.getAttribute('chat'), goo: '', user: ''};
+      if (element.classList.contains('on')) {
+        element.classList.remove('on');
+        element.classList.add('off');
+        const gooImg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        gooImg.classList.add('icon', 'svg-icon', 'svg-fill');
+        gooImg.setAttribute('viewBox', '0 0 768 768');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('pid', '0');
+        path.setAttribute('d', 'M96 368h96v256H96V368zm533.792-96H435.04c10.464 0 22.656-32.16 30.4-54.208C487.168 155.872 494.752 112 494.752 112H377.376s-.928 42.752-14.144 71.936C323.232 271.968 224 369.888 224 369.888v234.624l375.104 49.12s20.512-104.864 30.208-178.56c9.696-73.664.48-203.072.48-203.072z');
+        gooImg.appendChild(path);
+        element.appendChild(gooImg);
+        const gooTxt = document.createElement('span');
+        gooTxt.classList.add('goo-txt');
+        gooTxt.textContent = 'ぐー';
+        element.appendChild(gooTxt);
+        fetchData.goo = 'off';
+      } else {
+        element.classList.remove('off');
+        element.classList.add('on');
+        const animation = document.createElement('div');
+        animation.classList.add('goo-animation');
+        element.appendChild(animation);
+        const gooTxt = document.createElement('span');
+        gooTxt.classList.add('goo-txt');
+        gooTxt.textContent = 1;
+        element.appendChild(gooTxt);
+        fetchData.goo = 'on';
+      }
+      fetch('/goo/', {
+        method: 'POST',
+        body: JSON.stringify(fetchData),
+        headers: { "X-CSRFToken": csrftoken },
+      });
     });
   }
 </script>

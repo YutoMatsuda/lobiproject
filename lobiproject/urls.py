@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lobiapp.views import signupview, topview, homeview, loginview, groupview, chat_reply_view, chatview
+from lobiapp.views import signupview, topview, homeview, loginview, groupview, chat_reply_view, chatview, goo
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('group/<int:pk>/', groupview, name='group'),
     path('group/<int:group_id>/chat/<int:chat_id>/', chatview, name='chat'),
     path('chat-reply/', chat_reply_view, name='chat_reply'),
+    path('goo/', goo),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

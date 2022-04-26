@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ChatMessageForm
 from .models import GroupMember, Group, ChatMessage, ChatReply
 from django.db.models import Count
-
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -71,6 +71,14 @@ def chatview(request, group_id, chat_id):
     mainchat = ChatMessage.objects.get(id=chat_id)
     replychat = ChatReply.objects.filter(chat_id = chat_id)
     return render(request,'chat.html',{'mainchat':mainchat,'replychat':replychat})
+
+def goo(request):
+    post_data = request.body.decode('utf-8')
+    if post_data['goo'] == 'on':
+        pass
+    else:
+        pass
+    return JsonResponse({})
 
 """
 @login_required
